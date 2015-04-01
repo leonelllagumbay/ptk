@@ -114,8 +114,37 @@ Ext.define('Form.controller.query.querydefinitioncontroller', {
       },
      
      queryPreview: function(btn) {
-    	 var centerR = Ext.ComponentQuery.query('viewport panel[region=center], viewport')[0];
-		 centerR.getLayout().setActiveItem(4);
+    	 var qryGrid = Ext.ComponentQuery.query('querydefinitionview')[0];
+		 var querycode = qryGrid.getSelectionModel().getSelection()[0];
+		 if(querycode) {
+			 var qdetails = Ext.ComponentQuery.query('querydefinitionpreviewview')[0];
+			 qdetails.setTitle("eQuery Definition Preview - " + querycode.data.EQRYNAME);
+			 Ext.qd.Preview.getGrid('querycode',function(resp) {
+					console.log(resp); 
+					qdetails.removeAll();
+					var dmodel = resp.model[0];
+					var dstore = resp.store[0];
+					var dview = resp.view[0];
+					var dcontroller = resp.controller[0];
+					var dapp = resp.app[0];
+					
+					var a = eval(dmodel);
+					console.log(typeof a);
+					var b = eval(dstore);
+					console.log(typeof b);
+					var c = eval(dview);
+					console.log(typeof c);
+					var d = eval(dcontroller);
+					console.log(typeof d);
+					var e = eval(dapp);
+					console.log(typeof e);
+			 });
+			 
+			 var centerR = Ext.ComponentQuery.query('viewport panel[region=center], viewport')[0];
+			 centerR.getLayout().setActiveItem(4);
+		 } else {
+			 alert("No item to preview.");
+		 }
      },
      queryList: function(btn) {
     	 var centerR = Ext.ComponentQuery.query('viewport panel[region=center], viewport')[0];

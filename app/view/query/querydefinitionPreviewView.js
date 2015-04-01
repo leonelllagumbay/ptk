@@ -1,5 +1,6 @@
 Ext.define('Form.view.query.querydefinitionPreviewView', { 
-	extend: 'Ext.form.Panel',
+	extend: 'Ext.panel.Panel',
+	layout: 'vbox',
 	alias: 'widget.querydefinitionpreviewview',
 	title: 'eQuery Definition Preview',
 	width: '100%', 
@@ -19,6 +20,11 @@ Ext.define('Form.view.query.querydefinitionPreviewView', {
 			text: 'Query Column Definition',
 			action: 'querycolumndefinition'
 		}];
+		
+		this.items = [{
+			xtype: 'textfield'
+		}];
+		
 
 		this.callParent(arguments);
 	}
