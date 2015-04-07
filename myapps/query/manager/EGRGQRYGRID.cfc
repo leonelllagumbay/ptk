@@ -167,4 +167,16 @@ persistent="true" table="EGRGQRYGRID"
 	property name="WIDTH";
 	property name="XTYPE";
 	property name="GRIDEXTRA";
+	property name="STORESORTERS";
+	property name="STOREFILTERS";
+	property name="STOREPAGESIZE";
+	property name="STORETIMEOUT";
+	property name="STOREEXTRA";
+	property name="STOREPROXYEXTRA";
+	property name="SHAREABLE";
+	property name="PRINTABLE";
+	property name="EXPORTABLE";
+	property name="APPENDABLEROW";
+	property name="REMOVABLEROW";
+	property name="EMAILABLE";
 }

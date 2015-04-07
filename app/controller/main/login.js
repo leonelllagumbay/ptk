@@ -49,11 +49,16 @@ Ext.define('Form.controller.main.login', {
 	    }
 		console.log('logyouin');
 		if (button.up('form').getForm().isValid()) {
-			button.up('form').getEl().mask("Authenticating...", "loading");
+			button.up('form').getEl().mask(" ...", "loading");
 			var dform = button.up('form');
 			var dpwd = dform.down('textfield[name=password]');
-			var rpwd = dpwd.getValue();
-			dpwd.setValue(Ext.util.md5.hash(rpwd));
+			var dcheck = dform.down('checkboxfield[name=authtype]').getValue();
+			console.log(dcheck);
+			if(!dcheck) {
+				var rpwd = dpwd.getValue();
+				dpwd.setValue(Ext.util.md5.hash(rpwd));
+			}
+			
 		  	button.up('form').submit({
 		  		url: 'blank.cfm',
 		  		reset: true,
@@ -165,7 +170,7 @@ Ext.define('Form.controller.main.login', {
 		    } 
 	    }
 		if (button.up('form').getForm().isValid()) {
-			button.up('form').getEl().mask("Authenticating...", "loading");
+			button.up('form').getEl().mask(" ...", "loading");
 			var dform = button.up('form');
 			var npwd = dform.down('textfield[name=newpassword]');
 			var rpwd = npwd.getValue();

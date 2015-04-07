@@ -28,7 +28,7 @@ Ext.define('Form.view.query.optionField', {
 			}]
 		}];
 		this.store = 'query.optionFieldStore';
-		this.tbar = Ext.create('Ext.toolbar.Paging', {
+		this.fbar = Ext.create('Ext.toolbar.Paging', {
 				        store: 'query.optionFieldStore', 
 				        displayInfo: false,
 				        emptyMsg: "_"

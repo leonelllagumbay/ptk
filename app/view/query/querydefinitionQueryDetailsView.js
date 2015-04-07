@@ -77,6 +77,46 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				valueField: 'plugincode'
 			}]
 		},{
+			xtype: 'fieldset',
+			columnWidth: 0.5,
+			title: 'Store config',
+			collapsible: true,
+			layout: 'anchor',
+			defaults: {
+				xtype: 'textfield',
+				labelWidth: 150,
+				padding: 5,
+				width: 400
+			},
+			items: [{
+				name: 'STORESORTERS',
+				fieldLabel: 'Sorters',
+				maxLength: 100
+			},{
+				name: 'STOREFILTERS',
+				fieldLabel: 'Filters',
+				maxLength: 100
+			},{
+				name: 'STOREPAGESIZE',
+				fieldLabel: 'Page size',
+				xtype: 'numberfield',
+				minValue: 1
+			},{
+				name: 'STORETIMEOUT',
+				fieldLabel: 'Timeout',
+				xtype: 'numberfield',
+				minValue: 1,
+				value: 300000
+			},{
+				name: 'STOREEXTRA',
+				fieldLabel: 'Store extra properties',
+				xtype: 'textareafield'
+			},{
+				name: 'STOREPROXYEXTRA',
+				fieldLabel: 'Store proxy extra properties',
+				xtype: 'textareafield'
+			}]
+		},{
 			xtype: 'querydefinitionquerydetailsfeature'
 		},{
 			xtype: 'querydefinitionquerydetailsplugin'
@@ -1445,6 +1485,60 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 400
 			},
 			items: [{
+				name: 'SHAREABLE',
+				fieldLabel: 'Shareable',
+			    xtype: 'combobox',
+				queryMode: 'local',
+				store: 'query.yesno', 
+				displayField: 'yesnoname',
+				valueField: 'yesnocode',
+				width: 300
+			},{
+				name: 'PRINTABLE',
+				fieldLabel: 'Printable',
+			    xtype: 'combobox',
+				queryMode: 'local',
+				store: 'query.yesno', 
+				displayField: 'yesnoname',
+				valueField: 'yesnocode',
+				width: 300
+			},{
+				name: 'EXPORTABLE',
+				fieldLabel: 'Exportable',
+			    xtype: 'combobox',
+				queryMode: 'local',
+				store: 'query.yesno', 
+				displayField: 'yesnoname',
+				valueField: 'yesnocode',
+				width: 300
+			},{
+				name: 'APPENDABLEROW',
+				fieldLabel: 'Appendable',
+			    xtype: 'combobox',
+				queryMode: 'local',
+				store: 'query.yesno', 
+				displayField: 'yesnoname',
+				valueField: 'yesnocode',
+				width: 300
+			},{
+				name: 'REMOVABLEROW',
+				fieldLabel: 'Removable',
+			    xtype: 'combobox',
+				queryMode: 'local',
+				store: 'query.yesno', 
+				displayField: 'yesnoname',
+				valueField: 'yesnocode',
+				width: 300
+			},{
+				name: 'EMAILABLE',
+				fieldLabel: 'Emailable',
+			    xtype: 'combobox',
+				queryMode: 'local',
+				store: 'query.yesno', 
+				displayField: 'yesnoname',
+				valueField: 'yesnocode',
+				width: 300
+			},{
 				name: 'TBAR',
 				fieldLabel: 'Top bar',
 				maxLength: 100,

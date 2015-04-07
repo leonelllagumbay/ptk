@@ -119,25 +119,40 @@ Ext.define('Form.controller.query.querydefinitioncontroller', {
 		 if(querycode) {
 			 var qdetails = Ext.ComponentQuery.query('querydefinitionpreviewview')[0];
 			 qdetails.setTitle("eQuery Definition Preview - " + querycode.data.EQRYNAME);
-			 Ext.qd.Preview.getGrid('querycode',function(resp) {
+			 Ext.qd.Preview.generateOutput(querycode.data.EQRYCODE,function(resp) {
 					console.log(resp); 
 					qdetails.removeAll();
-					var dmodel = resp.model[0];
-					var dstore = resp.store[0];
-					var dview = resp.view[0];
-					var dcontroller = resp.controller[0];
-					var dapp = resp.app[0];
+					var dmodel, dstore, dview, dcontroller, dapp;
+					// For models
+					for(var a = 0; a<resp.model.length; a++) {
+						dmodel = resp.model[a];
+						eval(dmodel);
+					}
 					
-					var a = eval(dmodel);
-					console.log(typeof a);
-					var b = eval(dstore);
-					console.log(typeof b);
-					var c = eval(dview);
-					console.log(typeof c);
-					var d = eval(dcontroller);
-					console.log(typeof d);
-					var e = eval(dapp);
-					console.log(typeof e);
+					// For stores
+					for(var a = 0; a<resp.store.length; a++) {
+						dstore = resp.store[a];
+						eval(dstore);
+					}
+					
+					// For views
+					for(var a = 0; a<resp.view.length; a++) {
+						dview = resp.view[a];
+						eval(dview);
+					}
+					
+					// For controllers
+					for(var a = 0; a<resp.controller.length; a++) {
+						dcontroller = resp.controller[a];
+						eval(dcontroller);
+					}
+					
+					// For apps
+					for(var a = 0; a<resp.app.length; a++) {
+						dapp = resp.app[a];
+						eval(dapp);
+					}
+					
 			 });
 			 
 			 var centerR = Ext.ComponentQuery.query('viewport panel[region=center], viewport')[0];

@@ -5,7 +5,7 @@
  * @date 3/31/15
  **/
 component accessors=true output=false persistent=false ExtDirect="true" {
-	public struct function generateOutput(required string querycode) ExtDirect="true" {
+	public struct function getFormDefinition(required string querycode) ExtDirect="true" {
 
 		var disquery = EntityLoad("EGRGQRYGRID",trim(querycode),true);
 		var returnedStruct = StructNew();
@@ -35,10 +35,10 @@ component accessors=true output=false persistent=false ExtDirect="true" {
 				var figureObject = CreateObject("component","Figure");
 				returnedStruct = figureObject.getFigureDefinition(querycode);
 			} else if(outputtype == "form") {
-				var formObject = CreateObject("component","FormOutput");
+				var formObject = CreateObject("component","Form");
 				returnedStruct = formObject.getFormDefinition(querycode);
 			} else if(outputtype == "api") {
-				var apiObject = CreateObject("component","Apis");
+				var apiObject = CreateObject("component","Api");
 				returnedStruct = apiObject.getApiDefinition(querycode);
 			} else { // Defaults to grid
 				var gridObject = CreateObject("component","Grid");

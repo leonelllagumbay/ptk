@@ -7,6 +7,7 @@
 component accessors=true output=false persistent=true table="EGRGQRYCOLUMN" {
 	property name="EVIEWFIELDCODE" fieldtype="id";
 	property name="EGRGEVIEWFIELDS" cfc="EGRGEVIEWFIELDS" fieldtype="one-to-one" constrained="true";
+	property name="OUTPUTTYPE";
 	property name="COLUMNACTIVEITEM";
 	property name="COLUMNALIGN";
 	property name="CACTIONALTTEXT";

@@ -234,6 +234,20 @@
 		<cfset fieldcode = Createuuid()>
 		<cfset gosrc.setEVIEWFIELDCODE(fieldcode)>
 		<cfset dcolumn.setEVIEWFIELDCODE(fieldcode)>
+		<!--- set output type --->
+		<cfset dt = ucase(bdata['selectedfield'][g]['TYPE_NAME'])>
+		<cfif dt eq "INTEGER" or dt eq "INT" or dt eq "SMALLINT" or dt eq "TINYINT" or dt eq "MEDIUMINT" or dt eq "BIGINT" or dt eq "BIT" or dt eq "DECIMAL" or dt eq "NUMERIC" or dt eq "MONEY" or dt eq "SMALLMONEY">
+			<cfset dcolumn.setOUTPUTTYPE("int")>
+		<cfelseif dt eq "FLOAT" or dt eq "DOUBLE" or dt eq "BINARY_FLOAT" or dt eq "BINARY_DOUBLE">
+			<cfset dcolumn.setOUTPUTTYPE("float")>
+		<cfelseif dt eq "DATE" or dt eq "DATETIME" or dt eq "TIMESTAMP" or dt eq "TIME" or dt eq "DATETIME2" or dt eq "DATETIMEOFFSET" or dt eq "SMALLDATETIME">
+			<cfset dcolumn.setOUTPUTTYPE("date")>
+		<cfelseif dt eq "BOOLEAN" or dt eq "BOOL">
+			<cfset dcolumn.setOUTPUTTYPE("boolean")>
+		<cfelse>
+			<cfset dcolumn.setOUTPUTTYPE("string")>
+		</cfif>
+
 		<cfset gosrc.setEQRYCODEFK(bdata["querycode"])>
 		<cfset gosrc.setCOLUMNORDER(g)>
 		<cfset gosrc.setTABLENAME(bdata['selectedfield'][g]['TABLENAME'])>

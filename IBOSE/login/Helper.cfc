@@ -77,4 +77,53 @@
 		</cfif>
 	</cffunction>
 
+	<cffunction name="getLDAPAttributes" access="public" returntype="Struct">
+		<cfargument name="userid" required="true" type="string">
+
+		<cfquery name="qryGmfpeople" datasource="#session.global_dsn#" maxrows="1">
+			SELECT COMPANYCODE
+			  FROM GMFPEOPLE
+			 WHERE USERID = <cfqueryparam cfsqltype="cf_sql_varchar" value="#userid#" >
+		</cfquery>
+		<cfif Isdefined("qryGmfpeople")>
+			<cfif qryGmfpeople.recordcount gt 0>
+				<cfquery name="qryCompanySettings" datasource="#session.global_dsn#" maxrows="1">
+					SELECT LDAPSERVER,
+						   LDAPSTART,
+						   LDAPATTRIBUTES,
+						   LDAPPORT
+					  FROM EGRGCOMPANYSETTINGS
+					WHERE COMPANYCODE   = <cfqueryparam cfsqltype="cf_sql_varchar" value="#qryGmfpeople.COMPANYCODE#" >
+				</cfquery>
+				<cfset retVar = StructNew()>
+				<cfset retVar["LDAPSERVER"] = qryCompanySettings.LDAPSERVER>
+				<cfset retVar["LDAPSTART"] = qryCompanySettings.LDAPSTART>
+				<cfset retVar["LDAPATTRIBUTES"] = qryCompanySettings.LDAPATTRIBUTES>
+				<cfset retVar["LDAPPORT"] = qryCompanySettings.LDAPPORT>
+				<cfreturn retVar>
+			<cfelse>
+				<cfset retVar = StructNew()>
+				<cfset retVar["LDAPSERVER"] = "false" >
+			    <cfreturn retVar>
+			</cfif>
+		<cfelse>
+			<cfset retVar = StructNew()>
+			<cfset retVar["LDAPSERVER"] = "false" >
+		    <cfreturn retVar>
+		</cfif>
+	</cffunction>
+
+	<cffunction name="getUser" access="public" returntype="void">
+		<cfquery name="qryCred" datasource="#session.global_dsn#" maxrows="1">
+			SELECT USERID, PASSWORD
+			  FROM EGRGUSERMASTER
+			 WHERE USERID = <cfqueryparam cfsqltype="cf_sql_varchar" value="#form.username#" >
+		</cfquery>
+		<cfif qryCred.Recordcount gt 0>
+			<cfset form.password = qryCred.PASSWORD >
+		<cfelse>
+		    <cfthrow detail="No password set up">
+		</cfif>
+	</cffunction>
+
 </cfcomponent>

@@ -31,7 +31,7 @@ Ext.define('Form.view.query.optionFieldFunction', {
 				    }]
 				}],
 				store: 'query.optionFieldFunctionStore',
-				bbar: [{
+				fbar: [{
 					xtype: 'pagingtoolbar',
 					store: 'query.optionFieldFunctionStore'
 				}],

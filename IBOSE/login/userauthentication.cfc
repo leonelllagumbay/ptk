@@ -69,7 +69,7 @@
 						 DATELASTFAILEDATTEMPT
 					FROM EGRGUSERMASTER
 				   WHERE
-						(USERID   = '#ucase(theusername)#') AND
+						(USERID   = '#Ucase(theusername)#') AND
 						(PASSWORD = '#Ucase(thepassword)#')";
 		CheckedUser = executeQuery("CheckUser","#session.global_dsn#",thesql);
 
@@ -310,7 +310,11 @@
 							  WEBSITEEMAILADD,
 							  SLOGAN,
 							  EROOMSSERVER,
-							  COMPANYDEFAULTAPP
+							  COMPANYDEFAULTAPP,
+							  LDAPSERVER,
+							  LDAPSTART,
+							  LDAPATTRIBUTES,
+							  LDAPPORT
 						 FROM EGRGCOMPANYSETTINGS
 					    WHERE (COMPANYCODE   = '#companycode#')";
 			qryCOMPSETTINGS = executeQuery("qryCOMPSETTINGS","#session.global_dsn#",thesqlA);
@@ -325,7 +329,10 @@
 			session.websiteemailadd = "noemailaddress@gmail.com";
 			session.slogan = "No Slogan";
 			session.eroomsserver = "./eroom/";
-
+			session.ldapserver = "";
+			session.ldapstart = "";
+			session.ldapattributes = "";
+			session.ldapport = "";
 			for(cntCS=1;cntCS<=qryCOMPSETTINGS.recordcount;cntCS++)
 			{
 				session.companyname = qryCOMPSETTINGS[ "DESCRIPTION" ][ cntCS ];
@@ -345,6 +352,10 @@
 				} else {
 					session.defaultuserapp = qryCOMPSETTINGS[ "COMPANYDEFAULTAPP" ][ cntCS ];
 				}
+				session.ldapserver = qryCOMPSETTINGS[ "LDAPSERVER" ][ cntCS ];
+				session.ldapstart = qryCOMPSETTINGS[ "LDAPSTART" ][ cntCS ];
+				session.ldapattributes = qryCOMPSETTINGS[ "LDAPATTRIBUTES" ][ cntCS ];
+				session.ldapport = qryCOMPSETTINGS[ "LDAPPORT" ][ cntCS ];
 
 			}
 

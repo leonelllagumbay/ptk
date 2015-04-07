@@ -26,7 +26,7 @@ Ext.define('Form.view.query.optionOrderBy', {
 			}]
 		}];
 		this.store = 'query.optionOrderByStore';
-		this.tbar = Ext.create('Ext.toolbar.Paging', {
+		this.fbar = Ext.create('Ext.toolbar.Paging', {
 				        store: 'query.optionOrderByStore', 
 				        displayInfo: false,
 				        emptyMsg: "_"

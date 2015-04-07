@@ -28,6 +28,38 @@ Ext.define('Form.view.query.querydefinitionColumnDetailsView', {
 			xtype: 'hiddenfield',
 			allowBlank: true
 		},{
+			fieldLabel: 'Output type',
+			xtype: 'radiogroup',
+			listeners: {
+		        afterrender: function(cmp) {
+		            cmp.getEl().set({
+		                "title": "Override database and default output type"
+		            });
+		        }
+		    },
+		    columns: 2,
+		    items: [{
+		    	boxLabel: 'string',
+		    	name: 'OUTPUTTYPE',
+			    inputValue: 'string'
+		    },{
+		    	boxLabel: 'boolean',
+		    	name: 'OUTPUTTYPE',
+			    inputValue: 'boolean'
+		    },{
+		    	boxLabel: 'date',
+		    	name: 'OUTPUTTYPE',
+			    inputValue: 'date'
+		    },{
+		    	boxLabel: 'int',
+		    	name: 'OUTPUTTYPE',
+			    inputValue: 'int'
+		    },{
+		    	boxLabel: 'float',
+		    	name: 'OUTPUTTYPE',
+			    inputValue: 'float'
+		    }]
+		},{
 			name: 'COLUMNACTIVEITEM',
 			fieldLabel: 'Active Item',
 			maxLength: 30,

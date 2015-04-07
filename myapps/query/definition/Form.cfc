@@ -1,4 +1,9 @@
-<cfcomponent name="Form" Persistent="false" ExtDirect="true">
+
+<cfcomponent
+	name="Form"
+	Persistent="false"
+	ExtDirect="true"
+	hint="3/31/15">
 
 <cffunction name="Submit" ExtDirect="true" ExtFormHandler="true">
 	<cfscript>
@@ -506,6 +511,42 @@
 		}
 		if(IsDefined("form.GRIDEXTRA")) {
 		    dsource.setGRIDEXTRA(trim(form.GRIDEXTRA));
+		}
+		if(IsDefined("form.STORESORTERS")) {
+		    dsource.setSTORESORTERS(trim(form.STORESORTERS));
+		}
+		if(IsDefined("form.STOREFILTERS")) {
+		    dsource.setSTOREFILTERS(trim(form.STOREFILTERS));
+		}
+		if(IsDefined("form.STOREPAGESIZE")) {
+		    if(trim(form.STOREPAGESIZE) neq "") dsource.setSTOREPAGESIZE(trim(form.STOREPAGESIZE));
+		}
+		if(IsDefined("form.STORETIMEOUT")) {
+		    if(trim(form.STORETIMEOUT) neq "") dsource.setSTORETIMEOUT(trim(form.STORETIMEOUT));
+		}
+		if(IsDefined("form.STOREEXTRA")) {
+		    dsource.setSTOREEXTRA(trim(form.STOREEXTRA));
+		}
+		if(IsDefined("form.STOREPROXYEXTRA")) {
+		    dsource.setSTOREPROXYEXTRA(trim(form.STOREPROXYEXTRA));
+		}
+		if(IsDefined("form.SHAREABLE")) {
+		    dsource.setSHAREABLE(trim(form.SHAREABLE));
+		}
+		if(IsDefined("form.PRINTABLE")) {
+		    dsource.setPRINTABLE(trim(form.PRINTABLE));
+		}
+		if(IsDefined("form.EXPORTABLE")) {
+		    dsource.setEXPORTABLE(trim(form.EXPORTABLE));
+		}
+		if(IsDefined("form.APPENDABLEROW")) {
+		    dsource.setAPPENDABLEROW(trim(form.APPENDABLEROW));
+		}
+		if(IsDefined("form.REMOVABLEROW")) {
+		    dsource.setREMOVABLEROW(trim(form.REMOVABLEROW));
+		}
+		if(IsDefined("form.EMAILABLE")) {
+		    dsource.setEMAILABLE(trim(form.EMAILABLE));
 		}
 		EntitySave(dsource);
 		ormflush();
@@ -1089,6 +1130,18 @@
 			tmpresult["WIDTH"] = dsource[i].getWIDTH();
 			tmpresult["XTYPE"] = dsource[i].getXTYPE();
 			tmpresult["GRIDEXTRA"] = dsource[i].getGRIDEXTRA();
+			tmpresult["STORESORTERS"] = dsource[i].getSTORESORTERS();
+			tmpresult["STOREFILTERS"] = dsource[i].getSTOREFILTERS();
+			tmpresult["STOREPAGESIZE"] = dsource[i].getSTOREPAGESIZE();
+			tmpresult["STORETIMEOUT"] = dsource[i].getSTORETIMEOUT();
+			tmpresult["STOREEXTRA"] = dsource[i].getSTOREEXTRA();
+			tmpresult["STOREPROXYEXTRA"] = dsource[i].getSTOREPROXYEXTRA();
+			tmpresult["SHAREABLE"] = dsource[i].getSHAREABLE();
+			tmpresult["PRINTABLE"] = dsource[i].getPRINTABLE();
+			tmpresult["EXPORTABLE"] = dsource[i].getEXPORTABLE();
+			tmpresult["APPENDABLEROW"] = dsource[i].getAPPENDABLEROW();
+			tmpresult["REMOVABLEROW"] = dsource[i].getREMOVABLEROW();
+			tmpresult["EMAILABLE"] = dsource[i].getEMAILABLE();
 		}
 	}
 
@@ -1236,6 +1289,7 @@
 	</cfscript>
 </cffunction>
 
+
 <cffunction name="SubmitColumnDetail" ExtDirect="true" ExtFormHandler="true">
 <cfscript>
 		dcolumn = EntityLoad("EGRGQRYCOLUMN",{EVIEWFIELDCODE="#trim(form.EVIEWFIELDCODE)#"}, true);
@@ -1253,6 +1307,11 @@
 		if(IsDefined("form.COLUMNACTIVEITEM")) {
 		    dcolumn.setCOLUMNACTIVEITEM(trim(form.COLUMNACTIVEITEM));
 		}
+		if(IsDefined("form.OUTPUTTYPE")) {
+		    dcolumn.setOUTPUTTYPE(trim(form.OUTPUTTYPE));
+		}
+
+
 		if(IsDefined("form.COLUMNALIGN")) {
 		    dcolumn.setCOLUMNALIGN(trim(form.COLUMNALIGN));
 		}
@@ -1561,7 +1620,7 @@
 </cffunction>
 
 <cffunction name="LoadColumnDetail" ExtDirect="true" returntype="struct">
-<cfargument name="fieldcode" type="string">
+	<cfargument name="fieldcode" type="string">
 	<cfscript>
 	rootstruct = StructNew();
 	tmpresult = StructNew();
@@ -1569,6 +1628,7 @@
 	dcolumn = EntityLoad("EGRGQRYCOLUMN",{EVIEWFIELDCODE="#fieldcode#"}, false);
 	if(IsDefined("dcolumn")) {
 		for(i=1; i<=ArrayLen(dcolumn); i++) {
+			tmpresult["OUTPUTTYPE"] = dcolumn[i].getOUTPUTTYPE();
 			tmpresult["COLUMNACTIVEITEM"] = dcolumn[i].getCOLUMNACTIVEITEM();
 			tmpresult["COLUMNALIGN"] = dcolumn[i].getCOLUMNALIGN();
 			tmpresult["CACTIONALTTEXT"] = dcolumn[i].getCACTIONALTTEXT();
@@ -1677,6 +1737,4 @@
 	return rootstuct;
 	</cfscript>
 </cffunction>
-
-
 </cfcomponent>
