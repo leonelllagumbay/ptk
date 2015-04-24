@@ -1,0 +1,7 @@
+<Authors>
+  <methods>
+    <method name="GetAll" len="0" />
+    <method name="add" len="1" />
+    <method name="update" len="1" />
+  </methods>
+</Authors>

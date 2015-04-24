@@ -40,6 +40,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				allowBlank: true
 			},{
 				name: 'OUTPUTTYPE',
+				action: 'grid',
 				fieldLabel: 'Output type',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -52,6 +53,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				value: 'grid'
 			},{
 				name: 'QRYTITLE',
+				action: 'grid',
 				xtype: 'textfield',
 				fieldLabel: 'Title',
 				maxLength: 100,
@@ -60,6 +62,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			},{
 				name: 'FEATURES',
 				fieldLabel: 'Features',
+				action: 'grid',
 				xtype: 'combobox',
 				width: 700,
 				queryMode: 'local',
@@ -68,6 +71,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				valueField: 'featurecode'
 			},{
 				name: 'PLUGINS',
+				action: 'grid',
 				fieldLabel: 'Plugins',
 				xtype: 'combobox',
 				width: 700,
@@ -89,32 +93,46 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 400
 			},
 			items: [{
-				name: 'STORESORTERS',
-				fieldLabel: 'Sorters',
-				maxLength: 100
-			},{
-				name: 'STOREFILTERS',
-				fieldLabel: 'Filters',
-				maxLength: 100
-			},{
 				name: 'STOREPAGESIZE',
+				action: 'grid',
 				fieldLabel: 'Page size',
 				xtype: 'numberfield',
+				width: 300,
 				minValue: 1
 			},{
 				name: 'STORETIMEOUT',
+				action: 'grid',
 				fieldLabel: 'Timeout',
 				xtype: 'numberfield',
 				minValue: 1,
+				width: 300,
 				value: 300000
 			},{
-				name: 'STOREEXTRA',
-				fieldLabel: 'Store extra properties',
-				xtype: 'textareafield'
+				name: 'STORESORTERS',
+				action: 'grid',
+				fieldLabel: 'Sorters',
+				maxLength: 100,
+				width: 500,
+				listeners: {
+			        afterrender: function(cmp) {
+			            cmp.getEl().set({
+			                "title": "A string column name like 'TablenameColumnname' as the default asc sort or\n an array like:\n[{\n property: 'TablenameColumnname',\n direction: 'DESC'\n}]"
+			            });
+			        }
+			    }
 			},{
-				name: 'STOREPROXYEXTRA',
-				fieldLabel: 'Store proxy extra properties',
-				xtype: 'textareafield'
+				name: 'STOREFILTERS',
+				action: 'grid',
+				fieldLabel: 'Filters',
+				maxLength: 100,
+				width: 500,
+				listeners: {
+			        afterrender: function(cmp) {
+			            cmp.getEl().set({
+			                "title": "A string column name like 'TablenameColumnname' as the default filter column or\n an array like:\n[{\n dataIndex: 'TablenameColumnname',\n type: 'date'\n}]"
+			            });
+			        }
+			    }
 			}]
 		},{
 			xtype: 'querydefinitionquerydetailsfeature'
@@ -133,6 +151,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			},
 			items: [{
 				name: 'ANCHORSIZE',
+				action: 'grid',
 				fieldLabel: 'Anchor size',
 				maxLength: 30,
 				listeners: {
@@ -144,6 +163,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'COLUMNWIDTH',
+				action: 'grid',
 				fieldLabel: 'Column width ( no. or % of column layout )',
 				maxLength: 5,
 				listeners: {
@@ -155,42 +175,49 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'WIDTH',
+				action: 'grid',
 				fieldLabel: 'Width ( The width of this component in pixels )',
 				xtype: 'numberfield',
 				width: 250,
 				maxValue: 99999
 			},{
 				name: 'HEIGHT',
+				action: 'grid',
 				fieldLabel: 'Height ( The height of this component in pixels )',
 				xtype: 'numberfield',
 				width: 250,
 				maxValue: 99999
 			},{
 				name: 'MAXHEIGHT',
+				action: 'grid',
 				fieldLabel: 'Max height',
 				xtype: 'numberfield',
 				width: 250,
 				maxValue: 99999
 			},{
 				name: 'MAXWIDTH',
+				action: 'grid',
 				fieldLabel: 'Max width',
 				xtype: 'numberfield',
 				width: 250,
 				maxValue: 99999
 			},{
 				name: 'MINHEIGHT',
+				action: 'grid',
 				fieldLabel: 'Minimum height',
 				xtype: 'numberfield',
 				width: 250,
 				maxValue: 9999
 			},{
 				name: 'MINWIDTH',
+				action: 'grid',
 				fieldLabel: 'Minimum width',
 				xtype: 'numberfield',
 				width: 250,
 				maxValue: 9999
 			},{
 				name: 'MINBUTTONWIDTH',
+				action: 'grid',
 				fieldLabel: 'Minimum button width',
 				xtype: 'numberfield',
 				width: 250,
@@ -217,6 +244,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			},
 			items: [{
 				name: 'MARGIN',
+				action: 'grid',
 				fieldLabel: 'Margin',
 				maxLength: 15,
 				listeners: {
@@ -228,6 +256,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'PADDING',
+				action: 'grid',
 				fieldLabel: 'Padding (same with margin value format)',
 				maxLength: 15,
 				listeners: {
@@ -239,6 +268,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'BORDER',
+				action: 'grid',
 				fieldLabel: 'Border',
 				maxLength: 11,
 				listeners: {
@@ -250,6 +280,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'BODYBORDER',
+				action: 'grid',
 				fieldLabel: 'Body Border',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -266,6 +297,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'BODYPADDING',
+				action: 'grid',
 				fieldLabel: 'Body padding',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -277,6 +309,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				maxLength: 15
 			},{
 				name: 'BODYSTYLE',
+				action: 'grid',
 				fieldLabel: 'Body style',
 				maxLength: 50,
 				listeners: {
@@ -288,6 +321,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'SHADOW',
+				action: 'grid',
 				fieldLabel: 'Shadow',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -304,12 +338,14 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'SHADOWOFFSET',
+				action: 'grid',
 				fieldLabel: 'Shadow offset (Number of pixels to offset the shadow.)',
 				xtype: 'numberfield',
 				width: 250,
 				maxValue: 500
 			},{
 				name: 'STYLE',
+				action: 'grid',
 				fieldLabel: 'Style',
 				maxLength: 255,
 				width: 700,
@@ -322,6 +358,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'QRYUI',
+				action: 'grid',
 				fieldLabel: 'UI',
 				maxLength: 20,
 				listeners: {
@@ -346,6 +383,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			},
 			items: [{
 				name: 'AUTOSCROLL',
+				action: 'grid',
 				fieldLabel: 'Auto scroll',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -362,6 +400,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'AUTODESTROY',
+				action: 'grid',
 				fieldLabel: 'Auto destroy',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -378,6 +417,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'AUTORENDER',
+				action: 'grid',
 				fieldLabel: 'Auto render',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -394,6 +434,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'AUTOSHOW',
+				action: 'grid',
 				fieldLabel: 'Auto show',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -410,6 +451,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'CLOSABLE',
+				action: 'grid',
 				fieldLabel: 'Closable',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -426,6 +468,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'COLLAPSIBLE',
+				action: 'grid',
 				fieldLabel: 'Collapsible',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -442,6 +485,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'DRAGGABLE',
+				action: 'grid',
 				fieldLabel: 'draggable',
 				maxLength: 30,
 				listeners: {
@@ -453,6 +497,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'RESIZABLE',
+				action: 'grid',
 				fieldLabel: 'Resizable',
 				maxLength: 50,
 				listeners: {
@@ -464,6 +509,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'FLOATABLE',
+				action: 'grid',
 				fieldLabel: 'Floatable',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -480,6 +526,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'TOFRONTONSHOW',
+				action: 'grid',
 				fieldLabel: 'To front on show',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -496,6 +543,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'PLACEHOLDER',
+				action: 'grid',
 				maxLength: 50,
 				fieldLabel: 'Placeholder',
 				listeners: {
@@ -507,6 +555,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'SAVEDELAY',
+				action: 'grid',
 				fieldLabel: 'Save delay',
 				xtype: 'numberfield',
 				listeners: {
@@ -533,6 +582,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			},
 			items: [{
 				name: 'COLLAPSEDFIRST',
+				action: 'grid',
 				fieldLabel: 'Collapsed first',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -549,6 +599,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'COLLAPSED',
+				action: 'grid',
 				fieldLabel: 'Collapsed',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -565,6 +616,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'DISABLED',
+				action: 'grid',
 				fieldLabel: 'Disabled',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -581,6 +633,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'ALLOWDESELECT',
+				action: 'grid',
 				fieldLabel: 'Allow deselect',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -597,6 +650,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'ANIMCOLLAPSE',
+				action: 'grid',
 				fieldLabel: 'Anim collapse',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -607,6 +661,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				fieldLabel: 'Collapsed direction',
+				action: 'grid',
 				xtype: 'radiogroup',
 				width: 500,
 				listeners: {
@@ -633,9 +688,14 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    	boxLabel: 'Right',
 			    	name: 'COLLAPSEDIRECTION',
 				    inputValue: 'right'
+			    },{
+			    	boxLabel: 'Default',
+			    	name: 'COLLAPSEDIRECTION',
+				    inputValue: ''
 			    }]
 			},{
 				name: 'COLLAPSEMODE',
+				action: 'grid',
 				fieldLabel: 'Collapse mode',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -646,6 +706,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'DISABLESELECTION',
+				action: 'grid',
 				fieldLabel: 'Disable selection',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -662,6 +723,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'FIXED',
+				action: 'grid',
 				fieldLabel: 'Fixed',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -678,6 +740,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'FLOATING',
+				action: 'grid',
 				fieldLabel: 'Floating',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -694,6 +757,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				fieldLabel: 'Resize handles',
+				action: 'grid',
 				xtype: 'radiogroup',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -740,9 +804,14 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    	boxLabel: 'all',
 			    	name: 'RESIZEHANDLES',
 				    inputValue: 'all'
+			    },{
+			    	boxLabel: 'Default',
+			    	name: 'RESIZEHANDLES',
+				    inputValue: ''
 			    }]
 			},{
 				name: 'TITLECOLLAPSE',
+				action: 'grid',
 				fieldLabel: 'Title collapse',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -759,6 +828,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'HIDDEN',
+				action: 'grid',
 				fieldLabel: 'Hidden (true to hide the component)',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -768,6 +838,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'HIDECOLLAPSETOOL',
+				action: 'grid',
 				fieldLabel: 'Hide collapse tool',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -784,6 +855,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'HIDEHEADER',
+				action: 'grid',
 				fieldLabel: 'Hide headers (True to hide column headers)',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -793,6 +865,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				fieldLabel: 'Hide mode',
+				action: 'grid',
 				xtype: 'radiogroup',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -815,9 +888,14 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    	boxLabel: 'offsets',
 			    	name: 'HIDEMODE',
 				    inputValue: 'offsets'
+			    },{
+			    	boxLabel: 'Default',
+			    	name: 'HIDEMODE',
+				    inputValue: ''
 			    }]
 			},{
 				name: 'ROWLINES',
+				action: 'grid',
 				fieldLabel: 'Row lines (False to remove row line styling)',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -827,6 +905,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'SIMPLEDRAG',
+				action: 'grid',
 				fieldLabel: 'Simple drag',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -843,6 +922,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'ENABLECOLUMNHIDE',
+				action: 'grid',
 				fieldLabel: 'Enable column hide (False to disable column hiding within this grid)',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -852,6 +932,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'ENABLECOLUMNMOVE',
+				action: 'grid',
 				fieldLabel: 'Enable column move (False to disable column dragging within this grid)',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -861,6 +942,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'ENABLECOLUMNRESIZE',
+				action: 'grid',
 				fieldLabel: 'Enable column resize (False to disable column resizing within this grid)',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -870,6 +952,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'ENABLELOCKING',
+				action: 'grid',
 				fieldLabel: 'Enable locking',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -886,6 +969,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'PLACEHOLDERCOLLAPSEHIDEMODE',
+				action: 'grid',
 				fieldLabel: 'Placeholder collapse hide mode',
 				xtype: 'numberfield',
 				width: 250,
@@ -898,6 +982,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'OVERLAPHEADER',
+				action: 'grid',
 				fieldLabel: 'Overlap header',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -914,6 +999,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'MANAGEHEIGHT',
+				action: 'grid',
 				fieldLabel: 'Manage height',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -930,6 +1016,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'SYNCROWHEIGHT',
+				action: 'grid',
 				fieldLabel: 'Sync row height',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -959,6 +1046,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			},
 			items: [{
 				fieldLabel: 'Title align',
+				action: 'grid',
 				xtype: 'radiogroup',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -980,9 +1068,14 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    	boxLabel: 'center',
 			    	name: 'TITLEALIGN',
 				    inputValue: 'center'
+			    },{
+			    	boxLabel: 'Default',
+			    	name: 'TITLEALIGN',
+				    inputValue: ''
 			    }]
 			},{
 				fieldLabel: 'Button align',
+				action: 'grid',
 				xtype: 'radiogroup',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -1004,9 +1097,14 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    	boxLabel: 'center',
 			    	name: 'BUTTONALIGN',
 				    inputValue: 'center'
+			    },{
+			    	boxLabel: 'Default',
+			    	name: 'BUTTONALIGN',
+				    inputValue: ''
 			    }]
 			},{
 				fieldLabel: 'Header position',
+				action: 'grid',
 				width: 500,
 				xtype: 'radiogroup',
 				columns: 4,
@@ -1026,9 +1124,14 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    	boxLabel: 'bottom',
 			    	name: 'HEADERPOSITION',
 				    inputValue: 'bottom'
+			    },{
+			    	boxLabel: 'Default',
+			    	name: 'HEADERPOSITION',
+				    inputValue: ''
 			    }]
 			},{
 				fieldLabel: 'Region',
+				action: 'grid',
 				listeners: {
 			        afterrender: function(cmp) {
 			            cmp.getEl().set({
@@ -1062,9 +1165,14 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    	boxLabel: 'none',
 			    	name: 'REGION',
 				    inputValue: ''
+			    },{
+			    	boxLabel: 'Default',
+			    	name: 'REGION',
+				    inputValue: ''
 			    }]
 			},{
 				fieldLabel: 'Scroll',
+				action: 'grid',
 				listeners: {
 			        afterrender: function(cmp) {
 			            cmp.getEl().set({
@@ -1090,9 +1198,14 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    	boxLabel: 'none',
 			    	name: 'SCROLL',
 				    inputValue: 'false'
+			    },{
+			    	boxLabel: 'Default',
+			    	name: 'SCROLL',
+				    inputValue: ''
 			    }]
 			},{
 				name: 'OVERFLOWX',
+				action: 'grid',
 				fieldLabel: 'Overflow x',
 				maxLength: 7,
 				listeners: {
@@ -1104,6 +1217,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'OVERFLOWY',
+				action: 'grid',
 				fieldLabel: 'Overflow y',
 				maxLength: 7,
 				listeners: {
@@ -1128,6 +1242,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			},
 			items: [{
 				name: 'EMPTYTEXT',
+				action: 'grid',
 				fieldLabel: 'Empty text',
 				maxLength: 100,
 				width: 500,
@@ -1140,6 +1255,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'COLUMNLINES',
+				action: 'grid',
 				fieldLabel: 'Column lines (Adds column line styling)',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -1149,6 +1265,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'QRYCONSTRAIN',
+				action: 'grid',
 				fieldLabel: 'Constrain',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -1165,6 +1282,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'CONSTRAINHEADER',
+				action: 'grid',
 				fieldLabel: 'Constrain header',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -1181,6 +1299,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'QRYCONSTRAINTO',
+				action: 'grid',
 				fieldLabel: 'Constrain to',
 				maxLength: 35,
 				listeners: {
@@ -1192,6 +1311,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'CONSTRAINTINSETS',
+				action: 'grid',
 				fieldLabel: 'Constraint insets',
 				maxLength: 20,
 				listeners: {
@@ -1203,6 +1323,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'FRAME',
+				action: 'grid',
 				fieldLabel: 'Frame (True to apply a frame to the panel. Default: false)',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -1212,6 +1333,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'FRAMEHEADER',
+				action: 'grid',
 				fieldLabel: 'Frame header',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -1228,6 +1350,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'GLYPH',
+				action: 'grid',
 				fieldLabel: 'Glyph',
 				maxLength: 30,
 				listeners: {
@@ -1239,6 +1362,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    },
 			},{
 				name: 'HEADER',
+				action: 'grid',
 				fieldLabel: 'Header',
 				maxLength: 200,
 				width: 700,
@@ -1251,6 +1375,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    },
 			},{
 				name: 'ITEMS',
+				action: 'grid',
 				fieldLabel: 'Items',
 				width: 700,
 				listeners: {
@@ -1262,6 +1387,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'DOCKEDITEMS',
+				action: 'grid',
 				fieldLabel: 'Docked items',
 				maxLength: 100,
 				width: 500,
@@ -1274,6 +1400,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'ITEMID',
+				action: 'grid',
 				fieldLabel: 'Item id',
 				maxLength: 50,
 				listeners: {
@@ -1285,6 +1412,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'SEALEDCOLUMNS',
+				action: 'grid',
 				fieldLabel: 'Sealed columns',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -1301,17 +1429,19 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'SELMODEL',
+				action: 'grid',
 				fieldLabel: 'Selection Model',
 				maxLength: 50,
 				listeners: {
 			        afterrender: function(cmp) {
 			            cmp.getEl().set({
-			                "title": "A selection model instance or config object. In latter case the selType config option determines to which type of selection model this config is applied."
+			                "title": "A selection model instance or config object. In latter case the selType config option determines to which type of selection model this config is applied.\n\nExample checkbox column write:\nExt.create('Ext.selection.CheckboxModel')"
 			            });
 			        }
 			    }
 			},{
 				name: 'SELTYPE',
+				action: 'grid',
 				fieldLabel: 'Selection type',
 				maxLength: 20,
 				listeners: {
@@ -1323,6 +1453,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'SHRINKWRAP',
+				action: 'grid',
 				fieldLabel: 'Shrink wrap',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -1339,6 +1470,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'SHRINKWRAPDOCK',
+				action: 'grid',
 				fieldLabel: 'Shrink wrap dock',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -1355,6 +1487,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'SORTABLECOLUMNS',
+				action: 'grid',
 				fieldLabel: 'Sortable columns',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -1384,6 +1517,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			},
 			items: [{
 				name: 'TPL',
+				action: 'grid',
 				fieldLabel: 'Template',
 				maxLength: 100,
 				listeners: {
@@ -1395,6 +1529,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'QRYDATA',
+				action: 'grid',
 				fieldLabel: 'Data',
 				xtype: 'textareafield',
 				listeners: {
@@ -1407,6 +1542,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    width: 750
 			},{
 				name: 'TPLWRITEMODE',
+				action: 'grid',
 				fieldLabel: 'Template write mode',
 				maxLength: 20,
 				listeners: {
@@ -1418,6 +1554,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'CONTENTEL',
+				action: 'grid',
 				fieldLabel: 'Content Element',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -1428,6 +1565,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'RENDERDATA',
+				action: 'grid',
 				fieldLabel: 'Render data',
 				xtype: 'textareafield',
 				maxLength: 30,
@@ -1440,6 +1578,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'SCROLLDELTA',
+				action: 'grid',
 				fieldLabel: 'Scroll delta',
 				xtype: 'numberfield',
 				listeners: {
@@ -1451,6 +1590,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'HTML',
+				action: 'grid',
 				fieldLabel: 'Html',
 				width: 750,
 				xtype: 'textareafield',
@@ -1463,6 +1603,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'VERTICALSCROLLER',
+				action: 'grid',
 				fieldLabel: 'Vertical scroller',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -1486,6 +1627,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			},
 			items: [{
 				name: 'SHAREABLE',
+				action: 'grid',
 				fieldLabel: 'Shareable',
 			    xtype: 'combobox',
 				queryMode: 'local',
@@ -1495,6 +1637,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'PRINTABLE',
+				action: 'grid',
 				fieldLabel: 'Printable',
 			    xtype: 'combobox',
 				queryMode: 'local',
@@ -1504,6 +1647,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'EXPORTABLE',
+				action: 'grid',
 				fieldLabel: 'Exportable',
 			    xtype: 'combobox',
 				queryMode: 'local',
@@ -1513,6 +1657,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'APPENDABLEROW',
+				action: 'grid',
 				fieldLabel: 'Appendable',
 			    xtype: 'combobox',
 				queryMode: 'local',
@@ -1522,6 +1667,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'REMOVABLEROW',
+				action: 'grid',
 				fieldLabel: 'Removable',
 			    xtype: 'combobox',
 				queryMode: 'local',
@@ -1531,6 +1677,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'EMAILABLE',
+				action: 'grid',
 				fieldLabel: 'Emailable',
 			    xtype: 'combobox',
 				queryMode: 'local',
@@ -1540,6 +1687,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'TBAR',
+				action: 'grid',
 				fieldLabel: 'Top bar',
 				maxLength: 100,
 				listeners: {
@@ -1551,23 +1699,28 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'RBAR',
+				action: 'grid',
 				fieldLabel: 'Right bar',
 				maxLength: 100
 				
 			},{
 				name: 'BBAR',
+				action: 'grid',
 				fieldLabel: 'Bottom bar',
 				maxLength: 100
 			},{
 				name: 'LBAR',
+				action: 'grid',
 				fieldLabel: 'Left bar',
 				maxLength: 100
 			},{
 				name: 'FBAR',
+				action: 'grid',
 				fieldLabel: 'Footer bar',
 				maxLength: 100
 			},{
 				name: 'TOOLS',
+				action: 'grid',
 				fieldLabel: 'Tools',
 				maxLength: 200,
 				xtype: 'textareafield',
@@ -1580,6 +1733,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'BUTTONS',
+				action: 'grid',
 				fieldLabel: 'Buttons',
 				maxLength: 100,
 				xtype: 'textareafield',
@@ -1592,6 +1746,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'ICON',
+				action: 'grid',
 				fieldLabel: 'Icon',
 				maxLength: 100,
 				listeners: {
@@ -1616,6 +1771,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			},
 			items: [{
 				name: 'ACTIVEITEM',
+				action: 'grid',
 				fieldLabel: 'Active Item',
 				maxLength: 30,
 				listeners: {
@@ -1627,6 +1783,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'CLOSEACTION',
+				action: 'grid',
 				fieldLabel: 'Close action',
 				maxLength: 7,
 				listeners: {
@@ -1638,6 +1795,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'BUBBLEEVENTS',
+				action: 'grid',
 				fieldLabel: 'Bubble events',
 				maxLength: 50,
 				listeners: {
@@ -1649,6 +1807,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'DEFERROWRENDER',
+				action: 'grid',
 				fieldLabel: 'Defer row render',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -1665,6 +1824,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'DETACHONREMOVE',
+				action: 'grid',
 				fieldLabel: 'Detach on remove',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -1681,6 +1841,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'FOCUSONTOFRONT',
+				action: 'grid',
 				fieldLabel: 'Focus on to front',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -1697,6 +1858,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'FORCEFIT',
+				action: 'grid',
 				fieldLabel: 'Force fit',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -1713,6 +1875,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'FORMBIND',
+				action: 'grid',
 				fieldLabel: 'Form bind',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -1729,6 +1892,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'LOADER',
+				action: 'grid',
 				fieldLabel: 'Loader',
 				maxLength: 100,
 				listeners: {
@@ -1753,6 +1917,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			},
 			items: [{
 				name: 'BASECLS',
+				action: 'grid',
 				fieldLabel: 'Base class',
 				maxLength: 50,
 				listeners: {
@@ -1764,6 +1929,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'CLS',
+				action: 'grid',
 				fieldLabel: 'Class',
 				maxLength: 50,
 				listeners: {
@@ -1775,6 +1941,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'BODYCLS',
+				action: 'grid',
 				fieldLabel: 'Body class',
 				maxLength: 50,
 				listeners: {
@@ -1786,6 +1953,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'CHILDELS',
+				action: 'grid',
 				fieldLabel: 'Child elements',
 				maxLength: 80,
 				listeners: {
@@ -1797,6 +1965,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'COLLAPSEDCLS',
+				action: 'grid',
 				fieldLabel: 'Collapsed class',
 				maxLength: 50,
 				listeners: {
@@ -1808,6 +1977,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'COMPONENTCLS',
+				action: 'grid',
 				fieldLabel: 'Component class',
 				maxLength: 50,
 				listeners: {
@@ -1819,6 +1989,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'DISABLEDCLS',
+				action: 'grid',
 				fieldLabel: 'Disabled class',
 				maxLength: 50,
 				listeners: {
@@ -1830,6 +2001,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'HEADEROVERCLS',
+				action: 'grid',
 				fieldLabel: 'Header over class',
 				maxLength: 50,
 				listeners: {
@@ -1841,6 +2013,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'ICONCLS',
+				action: 'grid',
 				fieldLabel: 'Icon class',
 				maxLength: 50,
 				listeners: {
@@ -1852,6 +2025,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'OVERCLS',
+				action: 'grid',
 				fieldLabel: 'Over class',
 				maxLength: 50,
 				listeners: {
@@ -1863,6 +2037,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'GVIEWITEMCLS',
+				action: 'gview',
 				fieldLabel: 'Item class',
 				maxLength: 50,
 				listeners: {
@@ -1874,6 +2049,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'GVIEWFIRSTCLS',
+				action: 'gview',
 				fieldLabel: 'First class',
 				maxLength: 50,
 				listeners: {
@@ -1885,6 +2061,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'GVIEWLASTCLS',
+				action: 'gview',
 				fieldLabel: 'Last class',
 				maxLength: 50,
 				listeners: {
@@ -1896,6 +2073,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'GVIEWLOADINGCLS',
+				action: 'gview',
 				fieldLabel: 'Loading class',
 				maxLength: 50,
 				listeners: {
@@ -1907,6 +2085,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'GVIEWOVERITEMCLS',
+				action: 'gview',
 				fieldLabel: 'Over item class',
 				maxLength: 50,
 				listeners: {
@@ -1918,6 +2097,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'GVIEWSELECTEDITEMCLS',
+				action: 'gview',
 				fieldLabel: 'Selected item class',
 				maxLength: 50,
 				listeners: {
@@ -1929,6 +2109,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'LOCKEDGRIDCONFIG',
+				action: 'grid',
 				fieldLabel: 'Locked grid config',
 				maxLength: 50,
 				listeners: {
@@ -1940,6 +2121,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'LOCKEDVIEWCONFIG',
+				action: 'grid',
 				fieldLabel: 'Locked view config',
 				maxLength: 50,
 				listeners: {
@@ -1951,6 +2133,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'NORMALGRIDCONFIG',
+				action: 'grid',
 				fieldLabel: 'Normal grid config',
 				maxLength: 50,
 				listeners: {
@@ -1962,6 +2145,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'NORMALVIEWCONFIG',
+				action: 'grid',
 				fieldLabel: 'Normal view config',
 				maxLength: 50,
 				listeners: {
@@ -1986,6 +2170,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			},
 			items: [{
 				name: 'QRYVIEW',
+				action: 'grid',
 				fieldLabel: 'View',
 				maxLength: 100,
 				listeners: {
@@ -1997,17 +2182,19 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'VIEWCONFIG',
+				action: 'grid',
 				fieldLabel: 'View config',
-				maxLength: 100,
+				maxLength: 250,
 				listeners: {
 			        afterrender: function(cmp) {
 			            cmp.getEl().set({
-			                "title": "A config object that will be applied to the grid's UI view. Any of the config options available for Ext.view.Table can be specified here. This option is ignored if view is specified."
+			                "title": "A config object that will be applied to the grid's UI view. Any of the config options available for Ext.view.Table can be specified here. This option is ignored if view is specified. Example:\n\n{\nforceFit: false,\ntrackOver: false,\nemptyText: '<h1 style=\"margin:20px\">No matching results</h1>'}"
 			            });
 			        }
 			    }
 			},{
 				name: 'GVIEWBLOCKREFRESH',
+				action: 'gview',
 				fieldLabel: 'Block Refresh',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -2024,6 +2211,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'GVIEWDEFEREMPTYTEXT',
+				action: 'gview',
 				fieldLabel: 'Defer empty text',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -2040,6 +2228,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'GVIEWDEFERINITIALREFRESH',
+				action: 'gview',
 				fieldLabel: 'Defer initial refresh',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -2056,6 +2245,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'GVIEWENABLETEXTSELECTION',
+				action: 'gview',
 				fieldLabel: 'Enable text selection (True to enable text selections.)',
 				xtype: 'combobox',
 				queryMode: 'local',
@@ -2065,6 +2255,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'GVIEWITEMTPL',
+				action: 'gview',
 				fieldLabel: 'Item template',
 				maxLength: 255,
 				listeners: {
@@ -2076,6 +2267,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'GVIEWLOADMASK',
+				action: 'gview',
 				fieldLabel: 'Load mask',
 				maxLength: 50,
 				listeners: {
@@ -2087,6 +2279,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'GVIEWLOADINGHEIGHT',
+				action: 'gview',
 				fieldLabel: 'Loading height',
 				xtype: 'numberfield',
 				maxValue: 999,
@@ -2100,6 +2293,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'GVIEWLOADINGTEXT',
+				action: 'gview',
 				fieldLabel: 'Loading text',
 				maxLength: 50,
 				listeners: {
@@ -2111,6 +2305,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'GVIEWMARKDIRTY',
+				action: 'gview',
 				fieldLabel: 'Mark dirty',
 				maxLength: 20,
 				listeners: {
@@ -2128,6 +2323,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'GVIEWMOUSEOVEROUTBUFFER',
+				action: 'gview',
 				fieldLabel: 'Mouse over out buffer',
 				xtype: 'numberfield',
 				width: 250,
@@ -2141,6 +2337,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'GVIEWPRESERVESCROLLONREFRESH',
+				action: 'gview',
 				fieldLabel: 'Pre serve scroll on refresh',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -2157,6 +2354,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'GVIEWSTRIPEROWS',
+				action: 'gview',
 				fieldLabel: 'Stripe rows',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -2173,6 +2371,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'GVIEWTRACKOVER',
+				action: 'gview',
 				fieldLabel: 'Track over',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -2202,6 +2401,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			},
 			items: [{
 				name: 'STATEEVENTS',
+				action: 'grid',
 				fieldLabel: 'State events',
 				maxLength: 200,
 				width: 500,
@@ -2214,6 +2414,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'STATEID',
+				action: 'grid',
 				fieldLabel: 'State id',
 				maxLength: 50,
 				listeners: {
@@ -2225,6 +2426,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'STATEFUL',
+				action: 'grid',
 				fieldLabel: 'Stateful',
 				maxLength: 50,
 				listeners: {
@@ -2255,6 +2457,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			},
 			items: [{
 				name: 'LAYOUT',
+				action: 'grid',
 				fieldLabel: 'Layout',
 				maxLength: 50,
 				listeners: {
@@ -2266,6 +2469,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'QRYID',
+				action: 'grid',
 				fieldLabel: 'Id',
 				maxLength: 50,
 				listeners: {
@@ -2277,6 +2481,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'DEFAULTS',
+				action: 'grid',
 				fieldLabel: 'Defaults',
 				maxLength: 100,
 				listeners: {
@@ -2288,6 +2493,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'DEFAULTTYPE',
+				action: 'grid',
 				fieldLabel: 'Default type',
 				maxLength: 20,
 				listeners: {
@@ -2299,6 +2505,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'DEFAULTALIGN',
+				action: 'grid',
 				fieldLabel: 'Default align',
 				maxLength: 10,
 				listeners: {
@@ -2310,6 +2517,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'DEFAULTDOCKWEIGHTS',
+				action: 'grid',
 				fieldLabel: 'Default dock weights',
 				maxLength: 50,
 				listeners: {
@@ -2321,6 +2529,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'RTL',
+				action: 'grid',
 				fieldLabel: 'Right to left mode',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -2337,6 +2546,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'XTYPE',
+				action: 'grid',
 				fieldLabel: 'Xtype',
 				maxLength: 50,
 				listeners: {
@@ -2348,6 +2558,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'COMPONENTLAYOUT',
+				action: 'grid',
 				fieldLabel: 'Component layout',
 				maxLength: 50,
 				listeners: {
@@ -2359,6 +2570,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'SUSPENDLAYOUT',
+				action: 'grid',
 				fieldLabel: 'Suspend layout',
 				listeners: {
 			        afterrender: function(cmp) {
@@ -2375,6 +2587,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 				width: 300
 			},{
 				name: 'SUBGRIDXTYPE',
+				action: 'grid',
 				fieldLabel: 'Sub-grid xtype',
 				maxLength: 50,
 				listeners: {
@@ -2386,6 +2599,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'RENDERSELECTORS',
+				action: 'grid',
 				fieldLabel: 'Render selectors',
 				maxLength: 100,
 				listeners: {
@@ -2397,6 +2611,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'RENDERTO',
+				action: 'grid',
 				fieldLabel: 'Render to',
 				maxLength: 30,
 				listeners: {
@@ -2408,6 +2623,7 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			    }
 			},{
 				name: 'LISTENERS',
+				action: 'grid',
 				fieldLabel: 'Listeners',
 				xtype: 'textareafield',
 				width: 800,
@@ -2420,7 +2636,18 @@ Ext.define('Form.view.query.querydefinitionQueryDetailsView', {
 			        }
 			    }
 			},{
+				name: 'STOREEXTRA',
+				action: 'grid',
+				fieldLabel: 'Store extra properties',
+				xtype: 'textareafield'
+			},{
+				name: 'STOREPROXYEXTRA',
+				action: 'grid',
+				fieldLabel: 'Store proxy extra properties',
+				xtype: 'textareafield'
+			},{
 				name: 'GRIDEXTRA',
+				action: 'grid',
 				xtype: 'textareafield',
 				width: 800,
 				height: 200,

@@ -79,7 +79,7 @@ Ext.define('Form.controller.query.querydefinitioncontroller', {
     		dform.submit({
 				waitMsg: 'Submitting...',
 				timeout: 300000,
-				reset: true,
+				reset: false,
 			  		//Failure see app-wide error handler
 			  		success: function(form, action){
 			  			Ext.Msg.show({
@@ -99,7 +99,7 @@ Ext.define('Form.controller.query.querydefinitioncontroller', {
      		dform.submit({
  				waitMsg: 'Sending, please wait...',
  				timeout: 300000,
- 				reset: true,
+ 				reset: false,
  			  		//Failure see app-wide error handler
  			  		success: function(form, action){
  			  			Ext.Msg.show({
@@ -119,9 +119,12 @@ Ext.define('Form.controller.query.querydefinitioncontroller', {
 		 if(querycode) {
 			 var qdetails = Ext.ComponentQuery.query('querydefinitionpreviewview')[0];
 			 qdetails.setTitle("eQuery Definition Preview - " + querycode.data.EQRYNAME);
+			 qdetails.setDisabled(true);
 			 Ext.qd.Preview.generateOutput(querycode.data.EQRYCODE,function(resp) {
 					console.log(resp); 
 					qdetails.removeAll();
+					qdetails.setDisabled(false);
+					
 					var dmodel, dstore, dview, dcontroller, dapp;
 					// For models
 					for(var a = 0; a<resp.model.length; a++) {

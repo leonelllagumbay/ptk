@@ -1,0 +1,4 @@
+iBOS/e configs
+1. title icon 
+2. web site or company logo
+3. session timeout - not included here found in CFIDE administrator

@@ -120,14 +120,10 @@ Ext.define('Form.controller.form.simulatorcontroller', {
 		var thisgrid = splitBtn.up('grid');
 		if(actiontype == 'getneweforms' || actiontype == 'getpendingeforms') 
 	    { 
-			var myMask = Ext.create('Ext.LoadMask',{
-				target: thisgrid,
-				msg: "Opening, please wait..."
-			});
-		    myMask.show();
+			thisgrid.setDisabled(true);
 			
 			Ext.ss.data.getTheFormsFromeFormid(eformid,actiontype, function(result) {
-				myMask.hide();
+				thisgrid.setDisabled(false);
 				try {
 					eval(result);
 				} catch(err) {
@@ -143,13 +139,9 @@ Ext.define('Form.controller.form.simulatorcontroller', {
 		} 
 		else 
 		{
-			var myMask = Ext.create('Ext.LoadMask',{
-				target: thisgrid,
-				msg: "Opening, please wait..."
-			});
-		    myMask.show();
+			thisgrid.setDisabled(true);
 			Ext.ss.data.getTheFormsFromeFormid(eformid,actiontype, function(result) {
-				myMask.hide();
+				thisgrid.setDisabled(false);
 				try {
 					eval(result);
 					Ext.ss.data.zeroapproveDisapprove(eformid,function(result) {
@@ -180,14 +172,10 @@ Ext.define('Form.controller.form.simulatorcontroller', {
 			var actiontype = 'getneweforms';
 			
 			var thisgrid = theCell.up('grid');
-			var myMask = Ext.create('Ext.LoadMask',{
-				target: thisgrid,
-				msg: "Opening, please wait..."
-			});
-		    myMask.show();
+			thisgrid.setDisabled(true);
 			
 			Ext.ss.data.getTheFormsFromeFormid(eformid,actiontype, function(result) {
-				myMask.hide();
+				thisgrid.setDisabled(false);
 				try {
 					eval(result);
 				} catch(err) {
@@ -207,14 +195,10 @@ Ext.define('Form.controller.form.simulatorcontroller', {
 			var actiontype = 'getpendingeforms';
 			
 			var thisgrid = theCell.up('grid');
-			var myMask = Ext.create('Ext.LoadMask',{
-				target: thisgrid,
-				msg: "Opening, please wait..."
-			});
-		    myMask.show();
+			thisgrid.setDisabled(true);
 			
 			Ext.ss.data.getTheFormsFromeFormid(eformid,actiontype, function(result) {
-				myMask.hide();
+				thisgrid.setDisabled(false);
 				try {
 					eval(result);
 				} catch(err) {
@@ -232,14 +216,10 @@ Ext.define('Form.controller.form.simulatorcontroller', {
 			var actiontype = 'getmyeforms';
 			
 			var thisgrid = theCell.up('grid');
-			var myMask = Ext.create('Ext.LoadMask',{
-				target: thisgrid,
-				msg: "Opening, please wait..."
-			});
-		    myMask.show();
+			thisgrid.setDisabled(true);
 			
 			Ext.ss.data.getTheFormsFromeFormid(eformid,actiontype, function(result) {
-				myMask.hide();
+				thisgrid.setDisabled(false);
 				try {
 					eval(result);
 					//clear approve or disapprove count here
@@ -428,14 +408,10 @@ Ext.define('Form.controller.form.simulatorcontroller', {
 			var eformid   = selection.data.A_EFORMID;
 			var actiontype = 'getneweforms';
 			
-			var myMask = Ext.create('Ext.LoadMask',{
-				target: thisgrid,
-				msg: "Opening, please wait..."
-			});
-		    myMask.show();
+			thisgrid.setDisabled(true);
 			
 			Ext.ss.data.getTheFormsFromeFormid(eformid,actiontype, function(result) {
-				myMask.hide();
+				thisgrid.setDisabled(false);
 				try {
 					eval(result);
 				} catch(err) {
@@ -463,14 +439,10 @@ Ext.define('Form.controller.form.simulatorcontroller', {
 			var eformid   = selection.data.A_EFORMID;
 			var actiontype = 'getpendingeforms';
 			
-			var myMask = Ext.create('Ext.LoadMask',{
-					target: thisgrid,
-					msg: "Opening, please wait..."
-				});
-			myMask.show();
+			thisgrid.setDisabled(true);
 			
 			Ext.ss.data.getTheFormsFromeFormid(eformid,actiontype, function(result) {
-				myMask.hide();
+				thisgrid.setDisabled(false);
 				try {
 					eval(result);
 				} catch(err) {
@@ -503,13 +475,10 @@ Ext.define('Form.controller.form.simulatorcontroller', {
 		actiontype = getURLParameter('actiontype');
 		if(eformid)
 		{
-			var myMask = Ext.create('Ext.LoadMask',{
-				target: thiss,
-				msg: "Opening, please wait..."
-			});
-			myMask.show();
+			
+			thiss.setDisabled(true);
 			Ext.ss.data.getTheFormsFromeFormid(eformid,actiontype, function(result) {
-				myMask.hide();
+				thiss.setDisabled(false);
 				
 				try {
 					eval(result);

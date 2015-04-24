@@ -4,7 +4,7 @@ Ext.define('Form.view.query.querymanagerView', {
 	title: 'eQuery Manager',
 	width: '100%', 
 	multiSelect: true,
-    selModel: Ext.create ('Ext.selection.CheckboxModel'),
+    selModel: Ext.create('Ext.selection.CheckboxModel'),
 	viewConfig: {
 	    forceFit: false,
 		trackOver: false,

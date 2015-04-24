@@ -1,0 +1,15 @@
+{
+  Authors:{
+    methods:{
+      GetAll:{
+        len:0
+      },    
+      add:{  
+        len:1  
+      },
+      update:{ 
+        len:1
+      }
+    }
+  }
+}

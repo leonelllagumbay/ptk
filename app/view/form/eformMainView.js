@@ -1,16 +1,3 @@
-/*function renderBtn(val, p, record) {  
-        var contentId = Ext.id();
-       // createGridButton.defer(1, this, [val, contentId, record]);
-       var thebutton = Ext.create('Ext.Button',{
-        	text: 'abc',
-        	handler: function(btn){
-        		alert('you clickedme');
-        	},
-        	renderTo: Ext.get(this)
-        });
-        return '<div id="' + contentId + '">Hello</div>';
-        
-    }*/
 
 Ext.define('Form.view.form.eformMainView', {
 	extend: 'Ext.grid.Panel',

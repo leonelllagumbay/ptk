@@ -1,0 +1,22 @@
+[{
+  "type":"rpc",
+  "tid":14,
+  "action":"Authors",
+  "method":"GetAll",
+  "result":{
+  "COLUMNS":"ID,FIRSTNAME,LASTNAME",
+  "DATA":[
+      [1,"Stephen","King"],
+      [2,"Robert","Ludlum"]
+    ]
+  }
+},{
+  "type":"rpc",
+  "tid":15,
+  "action":"Authors",
+  "method":"add",
+  "result":{
+    "success":true,
+    "ID":3
+  }
+}]

@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>Pay Load</title>
+	<link rel="stylesheet" type="text/css" href="../scripts/extjs/resources/css/ext-all.css">
+    <script type="text/javascript" src="../scripts/extjs/ext-all.js"></script>
+
+
+<script type="text/javascript">
+Ext.onReady(function() {
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	var obj1 = {
+		name: "Leonell",
+		lastname: "Lagumbay",
+		arraySample: ["One","two","three"],
+		num: 1,
+		obj2: {
+			name: "mark",
+			age: 22
+		}
+	}
+	
+	var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
+	xmlhttp.open("POST", "/test.js");
+	xmlhttp.setRequestHeader("Content-Type", "application/json");
+	xmlhttp.send(JSON.stringify(obj1));
+    console.log('sent ok');
+});
+
+</script>
+</head>
+
+<body>
+	<p>This is a simple paragraph.</p><h3>This is rendered with h3 style</h3>
+</body>
+</html>

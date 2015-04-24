@@ -1,0 +1,376 @@
+<html>
+<head>
+<title>RegExp</title>
+	<link rel="stylesheet" type="text/css" href="../scripts/extjs/resources/css/ext-all.css">
+    <script type="text/javascript" src="../scripts/extjs/ext-all.js"></script>
+    <script src="../myapps/recruitment/jobposting/Api.cfm"></script>
+	<script type="text/javascript">
+ function draw(el) {
+ 	
+  var canvas = el;
+  var ctx = canvas.getContext("2d");
+ 
+  ctx.fillStyle = "red";
+ 
+  ctx.beginPath();
+  ctx.moveTo(30, 30);
+  ctx.lineTo(150, 150);
+  ctx.bezierCurveTo(60, 70, 60, 70, 70, 150);
+  ctx.lineTo(30, 30);
+  ctx.fill();
+}
+
+Ext.onReady(function(){
+	Ext.direct.Manager.addProvider(Ext.ss.APIDesc);
+	var localS = Ext.create('Ext.data.Store', {
+	    storeId:'simpsonsStore',
+	    fields:[{name: 'name',type: 'string'}, {name: 'email',type: 'string'}, {name: 'phone',type: 'int'}],
+	    groupField: 'name',
+	    
+	    pageSize: 5,
+	    data: {'items': [
+	        { name: 'Lisa',  email:"lisa@simpsons.com",  phone:"12"  },
+	        { name: 'Lisa',  email:"lisa@simpsons.com",  phone:"1"  },
+	        { name: 'Lisa',  email:"lisa@simpsons.com",  phone:"2"  },
+	        { name: 'Lisa',  email:"lisa@simpsons.com",  phone:"3"  },
+	        { name: 'Lisa',  email:"lisa@simpsons.com",  phone:"9"  },
+	        { name: 'Lisa',  email:"lisa@simpsons.com",  phone:"9"  },
+	        { name: 'Lisa',  email:"lisa@simpsons.com",  phone:"8"  },
+	        { name: 'Lisa',  email:"lisa@simpsons.com",  phone:"12"  },
+	        { name: 'LEO',  email:"leonell@simpsons.com",  phone:"35" },
+	        { name: 'Bart',  email:"bart@simpsons.com",  phone:"5" },
+	        { name: 'Bart',  email:"bart@simpsons.com",  phone:"5" },
+	        { name: 'LEO',  email:"lagumbay@simpsons.com",  phone:"57" },
+	        { name: 'Bart',  email:"bart@simpsons.com",  phone:"5" }
+	    ]},
+	    proxy: {
+	        type: 'memory',
+	        reader: {
+	            type: 'json',
+	            root: 'items'
+	        }
+	    }
+	}); 
+	
+	
+	
+	
+	var gridStoreRemote = Ext.create('Ext.data.Store', {
+		storeId: 'griddataaaa',
+		fields: [
+			'POSTEDBYIBOSE',
+			'POSTEDTO',
+			'REQUISITIONNO'
+		],
+		remoteFilter: true,
+		remoteSort: true,
+		simpleSortMode: true,
+		sorters: [{
+	            property: 'POSTEDBYIBOSE',
+	            direction: 'ASC'
+	    }],
+		filters: [{
+				type: 'date',
+	            dataIndex: 'POSTEDBYIBOSE' 
+		}],
+		pageSize: 3,
+		autoSave: false,
+		autoLoad: true,
+		autoSync: false,
+		listeners: {
+			beforeLoad: function(thisSS) { 
+			   /*
+			   try {
+			   		var theForm = Ext.ComponentQuery.query('form')[0];
+			   	    var docVal = theForm.down('textfield[name=C__CMFPA__DOCNUMBER]').getValue();
+					thisS.params({docNum: 'docnumval'})
+			   } catch(err) {
+			   	 console.log(err);
+			   	 return false;
+			   }
+			   */
+			   console.log('Store before load');
+			}
+		},
+		proxy: {
+			type: 'direct',
+			timeout: 300000,
+			extraParams: {
+				departmentcode: '__'
+			},
+			paramOrder: ['page', 'start', 'limit', 'sort', 'filter', 'departmentcode'],
+			api: {
+		        read: Ext.ss.data.GetAll,
+		        create: Ext.ss.data.GetAll,
+		        update: Ext.ss.data.updatenow,
+		        destroy: Ext.ss.data.GetAll,
+		    },
+			paramsAsHash: false,
+			filterParam: 'filter',
+			sortParam: 'sort',
+			limitParam: 'limit',
+			idParam: 'ID',
+			pageParam: 'page',
+			reader: {
+	            root: 'topics',
+	            totalProperty: 'totalCount'
+	        }
+		}
+	});
+	
+
+var px =	Ext.create('Ext.form.Panel', {
+		title: 'Sample form panel',
+		items: [{
+			xtype: 'textfield',
+			fieldLabel: 'Hi'
+		},{
+			xtype: 'component',
+			autoEl: {
+				tag: 'canvas',
+				height: 150,
+				width: 300
+			},
+			border: '0 0 1 0',
+			style: {
+				borderStyle: 'solid',
+				borderColor: 'black'
+			}
+		},{
+			xtype: 'grid',
+			margin: '0',
+			padding: '5',
+			title: 'Simple',
+		    store: localS,
+		    
+		    columns: [
+		        { text: 'Name',  dataIndex: 'name', width: '50%',
+		        	align: '',
+		        	editable: false
+		         },
+		        { text: 'Email', dataIndex: 'email', flex: 1 },
+		        { text: 'Phone', dataIndex: 'phone' }
+		    ],
+		    height: 150,
+		    width: 400
+		},{ //GROUPED GRID
+			xtype: 'grid',
+			requires: [
+		        'Ext.grid.feature.Grouping'
+		    ],
+		    features: [{
+		        ftype: 'grouping',
+		        //groupHeaderTpl: '{columnName}: {name} ({rows.length} Item{[values.rows.length > 1 ? "s" : ""]})',
+		        hideGroupedHeader: true,
+		        startCollapsed: true,
+		        id: 'restaurantGrouping'
+		    }],
+		    title: 'With Grouping',
+		    store: localS,
+		    columns: [
+		        { text: 'Name',  dataIndex: 'name', width: '50%',
+		        	align: '',
+		        	editable: false
+		         },
+		        { text: 'Email', dataIndex: 'email', flex: 1,sortable: true },
+		        { text: 'Phone', dataIndex: 'phone' }
+		    ],
+		    height: 200,
+		    width: 400
+		},{ //SIMPLE SUMMARY
+			xtype: 'grid',
+			features: [{
+		        ftype: 'summary',
+		    }],
+			margin: '0',
+			padding: '5',
+			title: 'Simple Summary',
+		    store: localS,
+		    
+		    columns: [
+		        { text: 'Name',  dataIndex: 'name', width: '50%',
+		        	align: '',
+		        	editable: false
+		         },
+		         {
+		        	 text: 'Group Head',
+		        	 columns: [{
+		        		 text: 'Email', dataIndex: 'email', flex: 1
+		        	 },{ 
+			        	text: 'Phone', 
+			        	dataIndex: 'phone',
+			        	summaryType: 'count',
+				        summaryRenderer: function(value, summaryData, dataIndex) {
+				            return Ext.String.format('{0} student{1}', value, value !== 1 ? 's' : ''); 
+				        }
+			        }]
+		         }
+		    ],
+		    height: 250,
+		    width: 400
+		},{ //GROUPED GRID WITH SUMMARY
+			xtype: 'grid',
+			requires: [
+		        'Ext.grid.feature.Grouping'
+		    ],
+		    features: [{
+		        ftype: 'groupingsummary',
+		        //groupHeaderTpl: '{columnName}: {name} ({rows.length} Item{[values.rows.length > 1 ? "s" : ""]})',
+		        hideGroupedHeader: true,
+		        startCollapsed: false
+		    },{
+		    	ftype: 'summary'
+		    }],
+		    title: 'With GroupingSummary and Grand Summary',
+		    store: localS,
+		    columns: [
+		        { text: 'Name',  dataIndex: 'name', width: '50%',
+		        	align: '',
+		        	editable: false
+		         },
+		        { text: 'Email', dataIndex: 'email', flex: 1 },
+		        { 
+		        	text: 'Phone', 
+		        	dataIndex: 'phone',
+		        	summaryType: 'count',
+			        summaryRenderer: function(value, summaryData, dataIndex) {
+			            return Ext.String.format('{0} student{1}', value, value !== 1 ? 's' : ''); 
+			        }
+		        }
+		    ],
+		    height: 300,
+		    width: 400
+		},{
+			xtype: 'grid',
+			margin: '0',
+			padding: '5',
+			title: 'Grid Row Body',
+		    store: localS,
+		    features: [{
+		        ftype: 'rowbody',
+		        setupRowData: function(record, rowIndex, rowValues) {
+		            var headerCt = this.view.headerCt,
+		                colspan = headerCt.getColumnCount();
+		             // Usually you would style the my-body-class in CSS file
+		            return {
+		                rowBody: '<div style="padding: 20px"><h1>wrerwerwerwe</h1>'+record.get("email")+'</div>',
+		                rowBodyCls: "my-body-class",
+		                rowBodyColspan: colspan
+		            };
+		        }
+		    }],
+		    columns: [
+		        { text: 'Name',  dataIndex: 'name', width: '50%',
+		        	align: '',
+		        	editable: false
+		         },
+		        { text: 'Email', dataIndex: 'email', flex: 1 },
+		        { text: 'Phone', dataIndex: 'phone' }
+		    ],
+		    height: 200,
+		    width: 400
+		},{
+			xtype: 'grid',
+			action:'eformgrid',hidden:true,id:'sls',
+			closable: true,
+			margin: '0',
+			padding: '5',
+			title: 'Grid Row Expander',
+		    store: localS,
+		    plugins: [{
+		        ptype: 'rowexpander',
+		        rowBodyTpl : new Ext.XTemplate(
+		            '<p><b>Name:</b> {name}</p>',
+		            '<p><b>Email:</b> {email}</p>',
+		            '<p><b>Phone number:</b> {phone:this.formatChange}</p><br>',
+		        {
+		            formatChange: function(v){
+		                var color = v >= 0 ? 'red' : 'green';
+		                return '<span style="color: ' + color + ';">' + Ext.util.Format.usMoney(v) + '</span>';
+		            }
+		        })
+		    }],
+		    columns: [
+		        { text: 'Name',  dataIndex: 'name', width: '50%',
+		        	align: '',
+		        	editable: false
+		         },
+		        { text: 'Email', dataIndex: 'email', flex: 1 },
+		        { text: 'Phone', dataIndex: 'phone' }
+		    ],
+		    height: 200,
+		    width: 400
+		},{
+			xtype: 'grid',
+			title: 'Remote Output Sample',
+		    store: gridStoreRemote,
+		    columns: [
+		        { text: 'POSTEDBYIBOSE',  dataIndex: 'POSTEDBYIBOSE' },
+		        { text: 'POSTEDTO', dataIndex: 'POSTEDTO', flex: 1, editor: {xtype: 'textfield', readOnly: false} },
+		        { text: 'REQUISITIONNO', dataIndex: 'REQUISITIONNO', filterable: true }
+		    ],
+		    tbar: [{
+		    	text: 'Add',
+		    	handler: function(btn) {
+		    		var disGrid = btn.up('grid');
+		    		disGrid.getStore().insert(0, {POSTEDBYIBOSE: 'a',POSTEDTO: 'b',REQUISITIONNO: 'c'});
+		    	}
+		    },{
+		    	text: 'Remove',
+		    	handler: function(btn) {
+		    		var disGrid = btn.up('grid');
+		    		disGrid.getStore().remove(disGrid.getSelectionModel().getSelection());
+		    	}
+		    },{
+		    	text: 'Sync',
+		    	handler: function(btn) {
+		    		var disGrid = btn.up('grid');
+		    		disGrid.getStore().sync();
+		    	}
+		    },{
+		    	text: 'Copy To'
+		    }],
+		    height: 200,
+		    width: 600,
+		    multiSelect: true,
+		    bbar: Ext.create('Ext.toolbar.Paging', {
+		        store: gridStoreRemote, 
+		        displayInfo: true, 
+		        emptyMsg: "No topics to display"
+		   }),
+		    plugins: [
+				Ext.create('Ext.grid.plugin.CellEditing', {
+				    clicksToEdit: 2
+	    	    })
+			]
+		}],
+		renderTo: Ext.getBody()
+	});
+    
+});
+
+</script>
+</head>
+
+<body>
+	<p>This is a simple paragraph.</p><h3>This is rendered with h3 style</h3>
+</body>
+</html>
+<!--2
+var a_str = "!@#$@#1234sdfsdfaaadleonelllagumbay@gmail.comwabbbysds123-64-678dfsdfleonelwaywaywaysdfwaylabwaysd3bCDbbaaaaaaabcdefghijklmnopqrswaytuvwxysszydefbas";
+	var str = "hello.xlsxss";
+	var re = /\w{1,}@\w{3,}\.\w{2,}/;
+	var re2 = /\w{1,}(?=\.xls)/;
+	
+	var result = re.exec(a_str);
+	var result2 = re2.exec(str);
+	console.log(re2);
+	console.log(result2);
+	
+	
+	console.log(re);
+	console.log(result);
+	console.log(result[0]);
+	console.log(result.index); 
+	console.log(result.input);
+	-->

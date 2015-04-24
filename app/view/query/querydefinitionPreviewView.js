@@ -21,9 +21,7 @@ Ext.define('Form.view.query.querydefinitionPreviewView', {
 			action: 'querycolumndefinition'
 		}];
 		
-		this.items = [{
-			xtype: 'textfield'
-		}];
+		this.items = [];
 		
 
 		this.callParent(arguments);

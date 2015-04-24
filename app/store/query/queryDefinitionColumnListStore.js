@@ -6,7 +6,7 @@ Ext.define('Form.store.query.queryDefinitionColumnListStore', {
 	simpleSortMode: true,
 	sorters: [{
             property: 'COLUMNORDER',
-            direction: 'DESC'
+            direction: 'ASC'
     }],
 	filters: [{
 			type: 'string',
